@@ -162,6 +162,11 @@ std::vector<double> OverSampling(cv::Mat &Src, double slope, double CCoffset, in
 			if (i == 0) {
 				while (!j)
 				{
+					// ADD by jt 2024.1.18 Prevent vector subscript out of range error of MappingCount
+					if ((i+k) >= *SamplingLen) {
+						break;
+					}
+					// -------------------------------------------------------------------------------
 					if (MappingCount[i + k] != 0)
 					{
 						SamplingBar[i] = SamplingBar[i + k] / ((double)MappingCount[i + k]);
@@ -185,6 +190,11 @@ std::vector<double> OverSampling(cv::Mat &Src, double slope, double CCoffset, in
 					k = 1;
 					while (!j)
 					{
+						// ADD by jt 2024.1.18 Prevent vector subscript out of range error of MappingCount
+						if ((i+k) >= *SamplingLen) {
+							break;
+						}
+						// -------------------------------------------------------------------------------
 						if (MappingCount[i + k] != 0)
 						{
 							SamplingBar[i] = SamplingBar[i + k] / ((double)MappingCount[i + k]);
